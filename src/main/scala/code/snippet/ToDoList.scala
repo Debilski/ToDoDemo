@@ -17,12 +17,14 @@ class ToDo {
 
   def addItem = "name=add-item" #> SHtml.onSubmit(title => ToDoListItem.createNew(title))
 
-  def toDoItems = "ul li *" #> {
-    ToDoListItem.findToDo.map{ item => renderItem(item) }
+  def toDoItems = ToDoListItem.findToDo match {
+    case Nil => "ul" #> fallbackText
+    case items => "ul li *" #> items.map(renderItem)
   }
 
-  def doneItems = "ul li *" #> {
-    ToDoListItem.findDone.map{ item => renderItem(item) }
+  def doneItems = ToDoListItem.findDone match {
+    case Nil => "ul" #> fallbackText
+    case items => "ul li *" #> items.map(renderItem)
   }
 
   def renderItem(item: ToDoListItem) = {
@@ -41,6 +43,8 @@ class ToDo {
     else
       SHtml.button("Check!", () => item.checkItem, ("class", "btn btn-default"))
   }
+
+  def fallbackText = <i>No items in this list</i>
 }
 
 
