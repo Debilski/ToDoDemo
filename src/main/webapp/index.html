@@ -7,14 +7,23 @@
   <body data-lift-content-id="main">
     <div id="main" data-lift="surround?with=default;at=content">
 
-      <h2>Welcome to your project!</h2>
+      <h2>Todo list</h2>
       <p>
-	<span data-lift="helloWorld.howdy">
-	  Welcome to your Lift app at <span id="time">Time goes here</span>
-	</span>
+	<form data-lift="ToDo.addItem">
+	  <label for="add-item">Add new item:</label><input class="form-control" id="add-item" name="add-item" />
+	</form>
       </p>
-      
-    </div>
+      <h3>Still to do</h3>
+      <form>
+	<ul data-lift="ToDo.toDoItems">
+	  <li><h4><span class="title">First item</span> <small>Created: <span class="createdate"/></small> <span class="buttons"></h4></li>
+	</ul>
+	<h3>Done</h3>
+	<ul data-lift="ToDo.doneItems">
+	  <li><h4><span class="title">First item</span> <small>Done: <span class="donedate"/></small> <span class="buttons"></h4></li>
+	</ul>
+	<form>
+      </div>
   </body>
 </html>
 
